@@ -8,11 +8,12 @@ namespace Shooter.PlayerMovement
     {
         [SerializeField] InputData _inputData;
         [SerializeField] Rigidbody _rigidbody;
+        [SerializeField] Transform _targetTransform;
         [SerializeField] PlayerMovementSettings _playerMovementSettings;
         private void Update()
         {
             _rigidbody.MovePosition(_rigidbody.position+ (_rigidbody.transform.forward*_inputData.Vertical*_playerMovementSettings.verticalSpeed));
-            _rigidbody.MovePosition(_rigidbody.position + (_rigidbody.transform.right*_inputData.Horizontal*_playerMovementSettings.horizontalSpeed));
+            _targetTransform.Rotate(0f,_inputData.Horizontal * _playerMovementSettings.horizontalSpeed, 0f, Space.Self);
         }
     }
 }

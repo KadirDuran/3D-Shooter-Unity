@@ -5,12 +5,14 @@ namespace Shooter.PlayerInput
 {
 
     public class InputManager : MonoBehaviour
-    {   
-        [SerializeField] InputData _inputData;
+    {
+        [SerializeField] private InputData[] _inputArray;
         private void Update()
         {
-            _inputData.Horizontal = Input.GetAxis("Horizontal");
-            _inputData.Vertical = Input.GetAxis("Vertical");
+            for (int i = 0; i < _inputArray.Length; i++)
+            {
+                _inputArray[i].ProcessInput();
+            }
         }
     }
 }

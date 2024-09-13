@@ -24,7 +24,10 @@ namespace Shooter.Camera
 
         private void CameraMovementFollow()
         {
-            _cameraTransform.localPosition = _cameraSettings.PositionOffset;
+            Vector3 offset = (_cameraTransform.right * _cameraSettings.PositionOffset.x) + (_cameraTransform.up * _cameraSettings.PositionOffset.y) +
+                 (_cameraTransform.forward * _cameraSettings.PositionOffset.z);
+            _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _positionTarget.position + offset, Time.deltaTime * _cameraSettings.PositionLerp);
+            
         }
 
     }
